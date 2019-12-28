@@ -16,7 +16,7 @@ const teams = [
       district: 3,
       city: 'HCM',
     },
-    members: ['Hanh', 'Nhat', 'Minh', 'Thoai', 'Thao MN', 'Hien', 'Tai', 'Tin', 'T. Anh', 'H. Anh'],
+    members: ["Hao Huynh", "Cuc Doan", "Mai Le", "Minh Nguyen", "Hien Vo"]
   },
   {
     name: 'Hotpot',
@@ -35,7 +35,7 @@ const teams = [
       district: 'Tan Binh',
       city: 'HCM',
     },
-    members: ['Toan', 'An', 'Lan', 'Anh', 'Tri', 'Quoc'],
+    members: ["Phong Nguyen","Y Huynh","Mai Le","Huan Mai"]
   },
   {
     name: 'Cash',
