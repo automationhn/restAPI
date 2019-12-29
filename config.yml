@@ -1,0 +1,5 @@
+db:
+  user: 'sa'
+  password: 'P@ssw0rd'
+  server: 'localhost'
+  database: 'companyDB' 

@@ -43,6 +43,8 @@ router.get('/v2', async function (req, res) {
 
   const { recordset: teamMember } = await pool.request().query(queryTeamMember);
 
+  pool.close();
+
   const result = teams.map((team) => {
     const memberByTeam = teamMember.filter(m => m.team_id == team.id);
     return { ...team, members: memberByTeam.map(m => `${m.first_name} ${m.last_name}`) }

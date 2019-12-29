@@ -27,14 +27,27 @@ An easy way to get started with a Express server offering a REST API with Node.j
 ### GET Routes
 
 * visit http://localhost:3000
-  * /teams
+
+  * /teams: get the list team with the database as the static file
+  * /teams/v2 : the new version, get the list team with the real database (MS SQL Server)
   * /teams/getTeamNames
   * /teams/getTeamById/4
-
   * /messages
   * /messages/1
   * /users
   * /users/1
+
+* FULL OPERATION TYPE
+  * GET: http://localhost:3000/titles
+  * GET: http://localhost:3000/titles/:id
+  * Params: `:id`
+  * POST: http://localhost:3000/titles
+  * Body context: `{short_title": "Admin", "title": "Admin"}`
+  * PATCH: http://localhost:3000/titles/:id
+  * Body context: `{short_title": "Admin", "title": "Admin"}`
+  * Params: `:id`
+  * DELETE: http://localhost:3000/titles/:id
+  * Params: `:id`
 
 ### Beyond GET Routes
 
