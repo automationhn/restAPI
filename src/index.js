@@ -2,6 +2,8 @@ import 'dotenv/config';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json';
 
 import models from './models';
 import routes from './routes';
@@ -33,6 +35,7 @@ app.use('/titles', routes.title);
 
 // Start
 
-app.listen(process.env.PORT, () =>
-  console.log(`Example app listening on port ${process.env.PORT}!`),
-);
+app.listen(process.env.PORT, () => {
+  app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));     
+  console.log(`Example app listening on port ${process.env.PORT}!`);
+});

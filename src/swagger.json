@@ -1,0 +1,317 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Rest API for Company Management",
+        "description": "A minimal and easy to follow example of what you need to create a CRUD style API in NodeJs using TypeScript",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "/",
+            "description": "Local Dev, or from Heroku"
+        },
+        {
+            "url": "/api/",
+            "description": "With docker-compose and nginx proxy"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Team",
+            "description": "API for get team information"
+        },
+        {
+            "name": "Title",
+            "description": "API for get title information"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/teams": {
+            "get": {
+                "tags": [
+                    "Team"
+                ],
+                "summary": "Get all teams in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/team"
+                        }
+                    }
+                }
+            }
+        },
+        "/teams/getTeamById/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the team that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Team"
+                ],
+                "summary": "Get team with given ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Team with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/team"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Team not found."
+                    }
+                }
+            }
+        },
+        "/titles": {
+            "get": {
+                "tags": [
+                    "Title"
+                ],
+                "summary": "Get all title in the company",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/title"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Title"
+                ],
+                "summary": "Create a new title in system",
+                "requestBody": {
+                    "description": "Title Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/title"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/titles/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the title that we want to match",
+                    "type": "number"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Title"
+                ],
+                "summary": "Get title with given ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Title with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/title"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. The title not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the title with given ID",
+                "tags": [
+                    "Title"
+                ],
+                "requestBody": {
+                    "description": "Title Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/title"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Cat with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/title"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    },
+                    "404": {
+                        "description": "Failed. Title not found."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete title with given ID",
+                "tags": [
+                    "Title"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Delete Title with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Title not found."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "team": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "dev_lead": {
+                    "type": "boolean"
+                },
+                "dev_lead_address": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/address"
+                    }
+                }
+            }
+        },
+        "address": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "boolean"
+                },
+                "district": {
+                    "type": "number"
+                }
+            }
+        },
+        "title": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "short_title": {
+                    "type": "string"
+                },
+                "note": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -29,8 +29,14 @@ router.get('/:id', async (req, res) => {
   const { recordset: titles } = await pool.request().query(queryTeam);
   
   pool.close();
-  return res.send(titles[0]);
+  if (titles[0]) {
+    return res.send(titles[0]);
+  } else {
+    res.status(404);
+    return res.send('Title not found');
+  }
 });
+
 
 router.post('/', (req, res) => {
   sql.connect(config, function (err) {
